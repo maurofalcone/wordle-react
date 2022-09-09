@@ -15,7 +15,8 @@ const getStatus = (
   char: string,
   pressedChar: string,
   isSubmitted: boolean,
-  isRowCompleted: boolean
+  isRowCompleted: boolean,
+  isAlreadyThere: boolean
 ) => {
   const formattedChar = pressedChar.toLowerCase();
   if (char === formattedChar && isRowCompleted) {
@@ -31,7 +32,8 @@ const getStatus = (
     if (
       formattedChar &&
       char !== formattedChar &&
-      word.includes(formattedChar)
+      word.includes(formattedChar) &&
+      !isAlreadyThere
     ) {
       return styles.warning;
     }
@@ -50,6 +52,44 @@ function Cell({ word, char, pressedChar, rowIdx, cellIdx }: Props) {
   } = useContext(GameContext);
   const completedRow = isRowCompleted[rowIdx] || false;
 
+  const checkExisistingWord = () => {
+    if (enteredChars[rowIdx]) {
+      const formattedChar = pressedChar.toLowerCase();
+      const mappedWord = word
+        .split("")
+        .reduce<Record<string, number>>((a, w) => {
+          if (a[w]) {
+            a[w] = a[w] + 1;
+          } else {
+            a[w] = 1;
+          }
+          return a;
+        }, {});
+
+      const mappedEnteredCharacters = enteredChars[rowIdx].reduce<
+        Record<string, number>
+      >((a, e) => {
+        if (a[e]) {
+          a[e] = a[e] + 1;
+        } else {
+          a[e] = 1;
+        }
+        return a;
+      }, {});
+      console.log(
+        mappedWord[formattedChar],
+        mappedEnteredCharacters[formattedChar],
+        formattedChar
+      );
+      if (mappedWord[formattedChar] < mappedEnteredCharacters[formattedChar]) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return false;
+  };
+
   const cellIsInActiveRow =
     !isInputDisabled &&
     currentRow === rowIdx &&
@@ -65,7 +105,8 @@ function Cell({ word, char, pressedChar, rowIdx, cellIdx }: Props) {
     char,
     pressedChar,
     isRowSubmitted[rowIdx],
-    completedRow
+    completedRow,
+    checkExisistingWord()
   );
 
   return (
