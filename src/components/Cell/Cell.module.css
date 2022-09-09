@@ -1,0 +1,94 @@
+.container,
+.success,
+.error,
+.warning,
+.unexistingWord {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.container {
+    background-color: #eaeeee;
+    color: #343d46;
+}
+
+.success,
+.error,
+.warning {
+    color: #FFFFFF
+}
+
+.success {
+    background-color: #588157;
+    animation: turn 1s ease-in-out;
+}
+
+.error {
+    background-color: #d62828;
+    animation: shake 1s cubic-bezier(.36, .07, .19, .97) both;
+
+}
+
+.warning {
+    background-color: #fcbf49;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.activeCell {
+    background-color: gray !important;
+}
+
+.unexistingWord {
+    background-color: white;
+    animation: shake 1s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+@keyframes turn {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

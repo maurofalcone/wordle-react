@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.keyContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 650px;
+}
+
+.key {
+    width: 50px;
+}
+
+.specialKey {
+    width: 70px;
+}
+
+.key, .specialKey {
+    height: 50px;
+    background-color: #65737e;
+    border-radius: 8px;
+    border: none;
+    /* color: #a7adba; */
+    color: #e0e8ee;
+    font-weight: 600;
+}

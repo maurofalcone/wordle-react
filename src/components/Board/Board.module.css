@@ -1,0 +1,18 @@
+.container {
+    display: grid;
+    gap: 10px;
+    padding: 25px;
+    width: min-content;
+}
+
+.winner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 120;
+    background-color: aliceblue;
+}
