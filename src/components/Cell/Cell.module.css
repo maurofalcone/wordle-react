@@ -42,6 +42,7 @@
 
 .activeCell {
     background-color: gray !important;
+    animation: shake 1s cubic-bezier(.36, .07, .19, .97) both;
 }
 
 .unexistingWord {

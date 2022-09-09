@@ -18,7 +18,7 @@
 }
 
 .specialKey {
-    width: 70px;
+    width: 100px;
 }
 
 .key, .specialKey {
@@ -26,7 +26,6 @@
     background-color: #65737e;
     border-radius: 8px;
     border: none;
-    /* color: #a7adba; */
     color: #e0e8ee;
     font-weight: 600;
 }

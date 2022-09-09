@@ -7,7 +7,7 @@ function Board() {
   const { boardWords, isGameCompleted, resetGame } = useContext(GameContext);
   const renderBoard = () => {
     const list = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
       const w = boardWords[0];
       list.push(w);
     }

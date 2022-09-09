@@ -70,12 +70,12 @@ const GameContextProvider = ({ children }: PropsWithChildren) => {
   );
 
   const undoSubmitRow = useCallback(() => {
-    if (pressedChar[currentRow].length === 5) {
+    if (pressedChar[currentRow].length === shuffledWords[0].length) {
       let newSumittedRows = [...isRowSubmitted];
       newSumittedRows[currentRow] = false;
       setRowSubmitted(newSumittedRows);
     }
-  }, [currentRow, isRowSubmitted, pressedChar]);
+  }, [currentRow, isRowSubmitted, pressedChar, shuffledWords]);
 
   const incrementRow = useCallback(() => {
     setCurrentRow(currentRow + 1);
@@ -96,12 +96,12 @@ const GameContextProvider = ({ children }: PropsWithChildren) => {
   }, [currentRow, isRowCompleted, pressedChar]);
 
   const submitRow = useCallback(() => {
-    if (pressedChar[currentRow].length === 5) {
+    if (pressedChar[currentRow].length === shuffledWords[0].length) {
       let newSumittedRows = [...isRowSubmitted];
       newSumittedRows[currentRow] = true;
       setRowSubmitted(newSumittedRows);
     }
-  }, [currentRow, isRowSubmitted, pressedChar]);
+  }, [currentRow, isRowSubmitted, pressedChar, shuffledWords]);
 
   const resetGame = () => {
     setGameCompleted(() => initialState.isGameCompleted);
@@ -151,7 +151,10 @@ const GameContextProvider = ({ children }: PropsWithChildren) => {
               newArr.pop();
               updatedArray[currentRow] = newArr;
             } else {
-              if (updatedArray[currentRow].length <= 4) {
+              if (
+                updatedArray[currentRow].length <=
+                shuffledWords[0].length - 1
+              ) {
                 const newArr = [...updatedArray[currentRow], value];
                 updatedArray[currentRow] = newArr;
               }
@@ -168,6 +171,7 @@ const GameContextProvider = ({ children }: PropsWithChildren) => {
       handleEnterKeyPress,
       isInputDisabled,
       isRowSubmitted,
+      shuffledWords,
       undoSubmitRow,
     ]
   );
